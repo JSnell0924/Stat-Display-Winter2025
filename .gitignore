@@ -26,5 +26,11 @@ replay_pid*
 # Ignore Gradle project-specific cache directory
 .gradle
 
+# Allow Gradle wrapper JAR to be committed
+!gradle/wrapper/gradle-wrapper.jar
+
+!gradle/wrapper/*.jar
+
+
 # Ignore Gradle build output directory
 build
