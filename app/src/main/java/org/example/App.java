@@ -3,7 +3,7 @@
  */
 package org.example;
 
-import org.example.disk.DiskInfo;
+import org.example.Features.disk.DiskInfo;
 
 public class App {
     public String getGreeting() {
