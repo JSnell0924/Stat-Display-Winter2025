@@ -1,4 +1,4 @@
-package org.example.cpu;
+package org.example.Features.cpu;
 
 public class cpuInfo {
     public static void getCpuInfo() {
