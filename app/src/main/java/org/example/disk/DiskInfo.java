@@ -23,6 +23,6 @@ public class DiskInfo {
         List<HWDiskStore> diskStorage = hw.getDiskStores();
         System.out.println(diskStorage);
 
-
+        System.out.println("PushPullTest");
     }
 }
