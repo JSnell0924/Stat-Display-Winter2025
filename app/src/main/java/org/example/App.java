@@ -4,6 +4,7 @@
 package org.example;
 
 import org.example.Features.disk.DiskInfo;
+import org.example.Features.cpu.cpuInfo;
 
 public class App {
     public String getGreeting() {
@@ -16,6 +17,8 @@ public class App {
         DiskInfo diskInfo = new DiskInfo();
         diskInfo.getDiskInfo();
 
+        cpuInfo cpuinfo = new cpuInfo();
+        cpuinfo.getCpuInfo();
 
     }
 }
