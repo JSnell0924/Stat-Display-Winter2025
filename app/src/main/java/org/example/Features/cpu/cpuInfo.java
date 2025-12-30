@@ -26,6 +26,7 @@ public class cpuInfo {
         System.out.println("Number of physical packages: " + cpu.getPhysicalPackageCount());
         System.out.println("Number of physical CPUs: " + cpu.getPhysicalProcessorCount());
         System.out.println("Number of logical CPUs: " + cpu.getLogicalProcessorCount());
+        System.out.printf("Total CPU usage: %.2f%%%n", cpu.getSystemCpuLoad(1000) * 100);
         System.out.println("End CPU Details");
     }
 }
