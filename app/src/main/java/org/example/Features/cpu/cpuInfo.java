@@ -15,6 +15,9 @@ public class cpuInfo {
         CentralProcessor cpu = hw.getProcessor();
         CentralProcessor.ProcessorIdentifier processorIdentifier = cpu.getProcessorIdentifier();
 
+        String osName = System.getProperty("os.name").toLowerCase();
+        boolean isMac = osName.contains("mac");
+
         long[][] prevTicks = cpu.getProcessorCpuLoadTicks();
 
         System.out.println("CPU Details");
@@ -37,7 +40,13 @@ public class cpuInfo {
             String freqStr;
 
             if (freqs != null && i < freqs.length && freqs[i] > 0) {
-                freqStr = String.format("%.2f GHz", freqs[i] / 1_000_000_000.0);
+                double freqGHz = freqs[i] / 1_000_000_000.0;
+
+                if (isMac) {
+                    freqGHz *= 1000;
+                }
+
+            freqStr = String.format("%.2f GHz", freqGHz);
             } else {
                 freqStr = "N/A";
             }
