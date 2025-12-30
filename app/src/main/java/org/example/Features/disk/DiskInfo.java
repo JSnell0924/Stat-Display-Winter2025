@@ -9,6 +9,7 @@ import oshi.hardware.Display;
 import oshi.hardware.HWDiskStore;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.hardware.Sensors;
+import oshi.software.os.OSFileStore;
 import oshi.util.tuples.Pair;
 
 public class DiskInfo {
@@ -17,14 +18,23 @@ public class DiskInfo {
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hw = si.getHardware();
         Sensors sensors = hw.getSensors();
-        List<HWDiskStore> diskStorage = hw.getDiskStores();
+        List<HWDiskStore> diskStores = hw.getDiskStores();
         //Pair<Integer, Integer> dsPartIdx = getDiskStoreAndPartitionForPath(filePath, diskStores);
 
-        for (HWDiskStore disk : diskStorage) {
+        List<OSFileStore> diskStorage = si.getOperatingSystem().getFileSystem().getFileStores();
+
+        for (HWDiskStore disk : diskStores) {
             System.out.println("Name: " + disk.getModel());
         }
 
-        System.out.println("PushPullTest");
+        for (OSFileStore store : diskStorage) {
+            double storageLeft = store.getFreeSpace() / Math.pow(1000, 3);
+            double totalStorage = store.getTotalSpace() / Math.pow(1000, 3);
+            System.out.println("Total Storage: " + totalStorage);
+            System.out.println("Storage left: " + storageLeft);
+        }
+
+       // System.out.println("PushPullTest");
     }
 }
 
