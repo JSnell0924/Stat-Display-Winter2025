@@ -23,6 +23,11 @@ public class DiskInfo {
 
         List<OSFileStore> diskStorage = si.getOperatingSystem().getFileSystem().getFileStores();
 
+        boolean isMac = System.getProperty("os.name").toLowerCase().contains("mac");
+        double divisor = isMac ? Math.pow(1000, 3) : Math.pow(1024, 3);
+
+    
+
         HWDiskStore mainDisk = null;
         long maxSize = 0;
         for (HWDiskStore disk : diskStores) {
@@ -53,8 +58,8 @@ public class DiskInfo {
                 continue;
             }
 
-            double storageLeft = store.getUsableSpace() / Math.pow(1024, 3);
-            double totalStorage = store.getTotalSpace() / Math.pow(1024, 3);
+            double storageLeft = store.getUsableSpace() / divisor;
+            double totalStorage = store.getTotalSpace() / divisor;
             System.out.println("Total Storage: " + totalStorage);
             System.out.println("Storage left: " + storageLeft); 
         }
