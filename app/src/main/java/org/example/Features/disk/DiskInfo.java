@@ -28,10 +28,26 @@ public class DiskInfo {
         }
 
         for (OSFileStore store : diskStorage) {
-            double storageLeft = store.getFreeSpace() / Math.pow(1000, 3);
+            String mount = store.getMount();
+            String name = store.getName();
+
+            if (mount.startsWith("/System") || 
+                mount.startsWith("/private") ||
+                mount.contains("com.apple") ||
+                mount.contains("@") ||  // APFS snapshots
+                name.contains("com.apple") ||
+                store.getTotalSpace() == 0) {
+                continue;  // Skip this volume
+            }
+
+            if (mount.contains("/sys") || mount.contains("/proc") || mount.contains("/dev") || mount.contains("/run")) {
+                continue;
+            }
+
+            double storageLeft = store.getUsableSpace() / Math.pow(1000, 3);
             double totalStorage = store.getTotalSpace() / Math.pow(1000, 3);
             System.out.println("Total Storage: " + totalStorage);
-            System.out.println("Storage left: " + storageLeft);
+            System.out.println("Storage left: " + storageLeft); 
         }
 
        // System.out.println("PushPullTest");
