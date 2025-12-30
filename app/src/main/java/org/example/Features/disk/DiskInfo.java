@@ -53,8 +53,8 @@ public class DiskInfo {
                 continue;
             }
 
-            double storageLeft = store.getUsableSpace() / Math.pow(1000, 3);
-            double totalStorage = store.getTotalSpace() / Math.pow(1000, 3);
+            double storageLeft = store.getUsableSpace() / Math.pow(1024, 3);
+            double totalStorage = store.getTotalSpace() / Math.pow(1024, 3);
             System.out.println("Total Storage: " + totalStorage);
             System.out.println("Storage left: " + storageLeft); 
         }
