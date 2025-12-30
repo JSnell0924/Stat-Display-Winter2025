@@ -23,8 +23,17 @@ public class DiskInfo {
 
         List<OSFileStore> diskStorage = si.getOperatingSystem().getFileSystem().getFileStores();
 
+        HWDiskStore mainDisk = null;
+        long maxSize = 0;
         for (HWDiskStore disk : diskStores) {
-            System.out.println("Name: " + disk.getModel());
+            if (disk.getSize() > maxSize) {
+                maxSize = disk.getSize();
+                mainDisk = disk;
+            }
+        }
+        
+        if (mainDisk != null) {
+            System.out.println("Name: " + mainDisk.getModel());
         }
 
         for (OSFileStore store : diskStorage) {
